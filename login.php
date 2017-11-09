@@ -7,8 +7,8 @@ $session = new SessionManager();
 $users = new Users();
 
 if($users->isLoggedIn()){
-    transfers_to('index.php');   
-} 
+    transfers_to('index.php');
+}
 require('inc/config.inc.php');
 
 if(isset($_POST['login'])){
@@ -28,11 +28,11 @@ if(isset($_POST['login'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Quản lý công văn - Trường Đại học An Giang.">
-    <meta name="keywords" content="Quản lý công văn, Trung tâm Tin học Trường Đại học An Giang">
+    <meta name="description" content="Quản lý công văn - Ban quản lý dự án đầu tư xây dựng tỉnh An Giang.">
+    <meta name="keywords" content="Quản lý công văn, Trung tâm Tin học Ban quản lý dự án đầu tư xây dựng tỉnh An Giang">
     <meta name="author" content="Phan Minh Trung">
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
-    <title>Quản lý công văn - Trường Đại học An Giang</title>
+    <title>Quản lý công văn - Ban quản lý dự án đầu tư xây dựng tỉnh An Giang</title>
     <link href="css/metro.css" rel="stylesheet">
     <link href="css/metro-icons.css" rel="stylesheet">
     <link href="css/metro-responsive.css" rel="stylesheet">
@@ -75,7 +75,7 @@ if(isset($_POST['login'])){
     <div class="login-form padding20 block-shadow">
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" data-role="validator" data-show-required-state="false" data-hint-background="bg-red" data-hint-color="fg-white" data-hide-error="5000">
             <h1 class="text-light">Đăng nhập hệ thống</h1>
-            <h4>Quản lý công văn Trường Đại học An Giang.</h4>
+            <h4>BQLDA Đầu tư Xây dựng tỉnh An Giang.</h4>
             <hr class="thin"/>
             <br />
             <div class="input-control text full-size" data-role="input">

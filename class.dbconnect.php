@@ -6,7 +6,7 @@ class DBConnect{
 	const USERNAME = 'root';
 	const PASSWORD = 'root';
 	private static $instance;
-	public $connection; 
+	public $connection;
 	public $database;
 	private function __construct(){
 		//$connectionString = sprintf('mongodb://%s:%s@%s:%d',DBConnect::USERNAME, DBConnect::PASSWORD, DBConnect::HOST, DBConnect::PORT);
@@ -23,7 +23,7 @@ class DBConnect{
 		}
 		return self::$instance;
 	}
-	
+
 	public function getCollection($name) {
 		return $this->database->selectCollection($name);
 	}

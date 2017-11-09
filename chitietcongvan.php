@@ -100,7 +100,7 @@ $loaivanban->id = $cv['id_loaicongvan'];$lvb = $loaivanban->get_one();
 	<tr>
 		<td>Thời gian xử lý</td>
 		<td>
-			<?php echo isset($cv['thoigianxuly']) ? date("d/m/Y", $cv['thoigianxuly']->sec) : ''; ?>
+			<?php echo (isset($cv['thoigianxuly']) && $cv['thoigianxuly']) ? date("d/m/Y", $cv['thoigianxuly']->sec) : ''; ?>
 		</td>
 	</tr>
 	<tr>
@@ -196,7 +196,7 @@ $emaillist = $emailaccount->get_list_condition($condition);
 				}
 				?>
 			</select>
-			<span class="tag success">Đã đọc email</span><span class="tag alert">Chưa đọc email</span>
+			<!--<span class="tag success">Đã đọc email</span><span class="tag alert">Chưa đọc email</span>-->
 		</div>
 	</div>
 	<div class="row cells12">

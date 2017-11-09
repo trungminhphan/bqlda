@@ -12,7 +12,7 @@ if(isset($_GET['submit']) && $id_loaivanban){
 	} else {
 		array_push($arr_loaivanban, new MongoId($id_loaivanban));
 	}
-	$congvan_list = $congvan->get_list_condition(array('id_loaicongvan' => array('$in' => $arr_loaivanban)));
+	$congvan_list = $congvan->get_list_condition(array('id_loaicongvan' => array('$in' => $arr_loaivanban)))->sort(array('sothutu' => -1));
 }
 ?>
 <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
@@ -39,7 +39,7 @@ if(isset($_GET['submit']) && $id_loaivanban){
 					echo '<option value="'.$child['_id'].'"'.($child['_id']==$id_loaivanban ? ' selected' : '').'>&nbsp;&nbsp;-- '.$child['ten'].'</option>';
 				}
 			}
-			
+
 		}
 		?>
 	</select>
@@ -56,7 +56,7 @@ if(isset($_GET['submit']) && $id_loaivanban){
 <table class="table hovered striped" id="congvan_list">
 	<thead>
 		<tr>
-			<th class="sortable-column sort-desc">STT</th>
+			<th class="sortable-column sort-desc">Số thứ tự</th>
 			<th>Số Công văn</th>
 			<th>Trích yếu</th>
 			<th>Ngày ký</th>

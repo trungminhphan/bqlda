@@ -1,11 +1,12 @@
 <?php
 require_once('header.php');
-$loaivanban = new LoaiVanBan(); $linhvuc = new LinhVuc(); $donvisoanthao = new DonViSoanThao();
+$loaivanban = new LoaiVanBan(); $donvisoanthao = new DonViSoanThao();
+//$linhvuc = new LinhVuc();
 $congvan = new CongVan();$emailaccount = new EmailAccount();
 $email_list = $emailaccount->get_all_list();
 $parent_loaivanban = $loaivanban->get_list_condition(array('id_parent' => ''));
 $donvisoanthao_list = $donvisoanthao->get_all_list();
-$linhvuc_list = $linhvuc->get_all_list();
+//$linhvuc_list = $linhvuc->get_all_list();
 $congvan_list = $congvan->get_all_list();
 $dinhkem = array();
 if(isset($_POST['submit'])){
@@ -163,22 +164,22 @@ if(isset($_POST['submit'])){
 			</select>
 		</div>
 	</div>
-	<div class="row cells12">
+	<!--<div class="row cells12">
 		<div class="cell colspan2 padding-top-10">Lĩnh vực</div>
 		<div class="cell colspan10 input-control select">
 			<select name="id_linhvuc" id="id_linhvuc" class="select2">
 				<option value="">Lĩnh vực</option>
 				<?php
-				if($linhvuc_list){
+				/*if($linhvuc_list){
 					foreach ($linhvuc_list as $lv) {
 						echo '<option value="'. $lv['_id'].'">'.$lv['ten'].'</option>';
 
 					}
-				}
+				}*/
 				?>
 			</select>
 		</div>
-	</div>
+	</div>-->
 	<div class="row cells12">
 		<div class="cell colspan2 padding-top-10">Trích yếu</div>
 		<div class="cell colspan10 input-control input">

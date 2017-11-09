@@ -1,4 +1,1 @@
-<?php
-echo md5('pmtrung');
-
-?>
+sdf.sm.gfsdmgmdskl;

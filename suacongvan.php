@@ -1,12 +1,12 @@
 <?php
 require_once('header.php');
-$loaivanban = new LoaiVanBan(); $linhvuc = new LinhVuc(); $donvisoanthao = new DonViSoanThao();
+$loaivanban = new LoaiVanBan(); $donvisoanthao = new DonViSoanThao();
 $congvan = new CongVan();$emailaccount = new EmailAccount();
 $email_list = $emailaccount->get_all_list();
-
+//$linhvuc = new LinhVuc();
 $parent_loaivanban = $loaivanban->get_list_condition(array('id_parent' => ''));
 $donvisoanthao_list = $donvisoanthao->get_all_list();
-$linhvuc_list = $linhvuc->get_all_list();
+//$linhvuc_list = $linhvuc->get_all_list();
 $congvan_list = $congvan->get_all_list();
 $dinhkem = array();$public=0;$dabaocao=0;$arr_emaillist = array();
 $id = isset($_GET['id']) ? $_GET['id'] : '';
@@ -93,7 +93,7 @@ if($id){
 	$ngayky = $cv['ngayky'] ? date("d/m/Y", $cv['ngayky']->sec) : '';
 	$nguoiky = isset($cv['nguoiky']) ? $cv['nguoiky'] : '';
 	$ngaydiden = $cv['ngaydiden'] ? date("d/m/Y", $cv['ngaydiden']->sec) : '';
-	$thoigianxuly = isset($cv['thoigianxuly']) ? date("d/m/Y", $cv['thoigianxuly']->sec) : '';
+	$thoigianxuly = (isset($cv['thoigianxuly']) && $cv['thoigianxuly']) ? date("d/m/Y", $cv['thoigianxuly']->sec) : '';
 	$phongxuly = isset($cv['phongxuly']) ? $cv['phongxuly'] : '';
 	$thoihanbaocao = $cv['thoihanbaocao'] ? date("d/m/Y", $cv['thoihanbaocao']->sec) : '';
 	$canbobaocao = $cv['canbobaocao']; $cacvanbancolienquan = $cv['cacvanbancolienquan'];
@@ -201,22 +201,22 @@ if($id){
 			</select>
 		</div>
 	</div>
-	<div class="row cells12">
+	<!--<div class="row cells12">
 		<div class="cell colspan2 padding-top-10">Lĩnh vực</div>
 		<div class="cell colspan10 input-control select">
 			<select name="id_linhvuc" id="id_linhvuc" class="select2">
 				<option value="">Lĩnh vực</option>
 				<?php
-				if($linhvuc_list){
+				/*if($linhvuc_list){
 					foreach ($linhvuc_list as $lv) {
 						echo '<option value="'. $lv['_id'].'"'.($lv['_id']==$id_linhvuc ? ' selected' : '').'>'.$lv['ten'].'</option>';
 
 					}
-				}
+				}*/
 				?>
 			</select>
 		</div>
-	</div>
+	</div>-->
 	<div class="row cells12">
 		<div class="cell colspan2 padding-top-10">Trích yếu</div>
 		<div class="cell colspan10 input-control input">
@@ -309,21 +309,21 @@ if($id){
     			<span class="check"></span>
 			</label>
 		</div>
-	</div>
+	</div>-->
 	<div class="row cells12">
 		<div class="cell colspan2 padding-top-10">Email</div>
 		<div class="cell colspan10 input-control select" data-role="select" data-placeholder="Chọn địa chỉ Email">
 			<select name="id_emailaccount[]" class="select2" multiple>
 				<?php
-				//if($email_list){
-				//	foreach ($email_list as $e) {
-				//		echo '<option value="'.$e['_id'].'"'.(in_array($e['_id'], $arr_emaillist) ? ' selected':'').'>'.$e['emailaddress'].'</option>';
-				//	}
-				//}
+				if($email_list){
+					foreach ($email_list as $e) {
+						echo '<option value="'.$e['_id'].'"'.(in_array($e['_id'], $arr_emaillist) ? ' selected':'').'>'.$e['emailaddress'].'</option>';
+					}
+				}
 				?>
 			</select>
 		</div>
-	</div>-->
+	</div>
 	<div class="row cells12">
 		<div class="cell colspan2 padding-top-10">Đính kèm</div>
 		<div class="cell colspan10 input-control file" data-role="input">

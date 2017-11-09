@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('header.php');
 $congvan = new CongVan();$emailaccount = new EmailAccount();
 $donvisoanthao = new DonViSoanThao();
@@ -18,20 +18,16 @@ if(isset($cv['id_donvisoanthao']) && $cv['id_donvisoanthao']){
 }
 //$mail->SMTPDebug = 3;                               // Enable verbose debug output
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'mail.agu.edu.vn';  // Specify main and backup SMTP servers
-/*$mail->Host = 'smtp.gmail.com';
-$mail->Username = 'legomarketingteam@gmail.com';             // SMTP username
-$mail->Password = 'qyohhytkzlfrapos';                        // SMTP password
-$mail->SMTPSecure = 'ssl';                          // SMTP password
-$mail->Port = 465;*/                                   // TCP port to connect to
+$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+//$mail->Host = 'mail.agu.edu.vn';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;
-$mail->Username = 'pmtrung@agu.edu.vn';                 // SMTP username
-$mail->Password = '882564';                           // SMTP password
-$mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587;                         // TCP port to connect to
+$mail->Username = 'trungminhphan@gmail.com';                 // SMTP username
+$mail->Password = 'esqrfmrotkxvgzyn';                           // SMTP password
+$mail->SMTPSecure = 'ssl';                  // Enable TLS encryption, `ssl` also accepted
+$mail->Port = 465;                         // TCP port to connect to
 $mail->CharSet = 'UTF-8';
 //$mail->setFrom('legomarketingteam@gmail.com', 'P. Hành chính');
-$mail->setFrom('pmtrung@agu.edu.vn', 'Phan Minh Trung');
+$mail->setFrom('trungminhphan@gmail.com', 'BQLDAĐTXD tỉnh An Giang');
 echo '<a href="chitietcongvan.php?id='.$id_congvan.'" class="button primary"><span class="mif-keyboard-return"></span> Trở về</a>';
 echo '<hr />';
 if($id_emailaccount){
@@ -46,7 +42,8 @@ if($id_emailaccount){
 			//$mail->addCC('cc@example.com');
 			//$mail->addBCC('bcc@example.com');
 			if($cv['dinhkem'] && count($cv['dinhkem']) > 0 ){
-				$link_file = '<a href="http://demo3.agu.edu.vn/qlcv/view.php?'.md5('id').'='.$id_congvan.'&'.md5('id_email').'='.$v.'">Chi tiết vui lòng xem tại đây</a>';
+				$link_file = '<a href="http://docs.agu.edu.vn/bqlda/view.php?'.md5('id').'='.$id_congvan.'&'.md5('id_email').'='.$v.'">Chi tiết vui lòng xem tại đây</a>';
+				$mail->addAttachment($target_files . $cv['dinhkem'][0]['alias_name']);
 				//$link_file = 'Chi tiết vui lòng xem <a href="http://localhost/congvan/view.php?'.md5('id').'='.$id_congvan.'&'.md5('id_email').'='.$v.'">tại đây</a>';
 			} else {
 				$link_file = '';
@@ -75,41 +72,34 @@ if($id_emailaccount){
 					</tr>
 					<tr>
 						<td><b>Ghi chú: </b></td>
-						<td><b>'.$link_file.'</b></td>
+						<td><b>'.$link_file.' hoặc xem đính kèm</b></td>
 					</tr>
 				</table>
 				<hr />
-				<b>PHÒNG HÀNH CHÍNH TỔNG HỢP - TRƯỜNG ĐẠI HỌC AN GIANG</b> <br />
-				Địa chỉ: Số 18 Ung Văn Khiêm, Phường Đông Xuyên, TP Long Xuyên - Tỉnh An Giang <br />
-				Điện thoại: (0763).942678 - Email: ado@agu.edu.vn
+				<b>BAN QUẢN LÝ ĐẦU TƯ XÂY DỰNG TỈNH AN GIANG</b> <br />
 			';
-$content_mail_alt = 'Kính gửi: '.$kinhgui.' 
+$content_mail_alt = 'Kính gửi: '.$kinhgui.'
 
 Công văn của: '.$tendonvisoanthao.'
 
-Số công văn: '.$cv['socongvan'].' 
+Số công văn: '.$cv['socongvan'].'
 
-Ngày ký: '.($cv['ngayky'] ? date("d/m/Y",$cv['ngayky']->sec) : '').' 
+Ngày ký: '.($cv['ngayky'] ? date("d/m/Y",$cv['ngayky']->sec) : '').'
 
-Về việc: '.$cv['trichyeu'].'  
+Về việc: '.$cv['trichyeu'].'
 
 Link xem công văn:
 
-http://demo3.agu.edu.vn/qlcv/view.php?'.md5('id').'='.$id_congvan.'&'.md5('id_email').'='.$v.'
+http://docs.agu.edu.vn/bqlda/view.php?'.md5('id').'='.$id_congvan.'&'.md5('id_email').'='.$v.'
 
 ------------------------------------------------------------------------------------------------------------
-PHÒNG HÀNH CHÍNH TỔNG HỢP - TRƯỜNG ĐẠI HỌC AN GIANG
-
-Địa chỉ: Số 18 Ung Văn Khiêm, Phường Đông Xuyên, TP Long Xuyên - Tỉnh An Giang
-
-Điện thoại: (0763).942678 - Email: ado@agu.edu.vn';
+BAN QUẢN LÝ ĐẦU TƯ XÂY DỰNG TỈNH AN GIANG';
 			//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
 			//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 			$mail->isHTML(true);                                  // Set email format to HTML
 			$mail->Subject = $cv['trichyeu'];
 			$mail->Body    = $content_mail;
 			$mail->AltBody = $content_mail_alt;
-			
 			if(!$mail->send()) {
 			    echo 'Lỗi xảy ra:';
 			    echo 'Mailer Error: ' . $mail->ErrorInfo;
@@ -119,7 +109,7 @@ PHÒNG HÀNH CHÍNH TỔNG HỢP - TRƯỜNG ĐẠI HỌC AN GIANG
 			$mail->ClearAddresses();
 		}
 	}
-		
+
 }
 require_once('footer.php');
 ?>
